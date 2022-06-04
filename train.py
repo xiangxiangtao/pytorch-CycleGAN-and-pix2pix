@@ -11,6 +11,18 @@ The script supports continue/resume training. Use '--continue_train' to resume y
 Example:
     Train a CycleGAN model:
         python train.py --dataroot ./datasets/maps --name maps_cyclegan --model cycle_gan
+        python train.py --dataroot ./datasets/composite_gas_img --name composite_gas_img_cyclegan --model cycle_gan --display_env
+        python train.py --dataroot ./datasets/composite_gas_img --name composite_gas_img_cyclegan --model cycle_gan --continue_train --epoch_count 10
+
+        python train.py --dataroot ./datasets/gas --name gas_fake2real_cyclegan_1 --model cycle_gan --display_env cyclegan_gas_fake2real_1
+        python train.py --dataroot ./datasets/gas --name gas_fake2real_cyclegan_2_CPshift --model cycle_gan --display_env cyclegan_gas_fake2real_2_CPshift
+        python train.py --dataroot ./datasets/gas --name gas_fake2real_cyclegan_3_Rshift --model cycle_gan --display_env cyclegan_gas_fake2real_3_Rshift
+
+        python train.py --dataroot ./datasets/gas --name gas_fake2real_cyclegan_CPRshift_2 --model cycle_gan --display_env cyclegan_gas_fake2real_CPRshift_2
+
+
+
+
     Train a pix2pix model:
         python train.py --dataroot ./datasets/facades --name facades_pix2pix --model pix2pix --direction BtoA
 

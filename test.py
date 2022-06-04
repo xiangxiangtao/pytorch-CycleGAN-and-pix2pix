@@ -13,6 +13,25 @@ Example (You need to train models first or download pre-trained models from our 
     Test a CycleGAN model (one side only):
         python test.py --dataroot datasets/horse2zebra/testA --name horse2zebra_pretrained --model test --no_dropout
 
+        python test.py --dataroot datasets/gas/trainA --name gas_fake2real/CPRshift --model test --no_dropout --preprocess none     #####CPRshift
+        python test.py --dataroot datasets/gas/trainB --name gas_real2fake/CPRshift --model test --no_dropout --preprocess none     #####CPRshift
+
+        python test.py --dataroot datasets/gas/trainA --name gas_fake2real/CPshift --model test --no_dropout --preprocess none     #####CPshift
+        python test.py --dataroot datasets/gas/trainB --name gas_real2fake/CPshift --model test --no_dropout --preprocess none     #####CPshift
+
+        python test.py --dataroot datasets/gas/trainA --name gas_fake2real/Rshift --model test --no_dropout --preprocess none     #####Rshift
+        python test.py --dataroot datasets/gas/trainB --name gas_real2fake/Rshift --model test --no_dropout --preprocess none     #####Rshift
+
+        python test.py --dataroot datasets/gas/composite_5_train --name gas_fake2real/CPRshift --model test --no_dropout --preprocess none     #####CPRshift composite5 train
+        python test.py --dataroot datasets/gas/composite_5_val --name gas_fake2real/CPRshift --model test --no_dropout --preprocess none     #####CPRshift composite5 val
+
+        python test.py --dataroot datasets/gas/composite_6_train --name gas_fake2real_cyclegan_CPRshift_2/fake2real --model test --no_dropout --preprocess none     #####CPRshift composite6 train
+        python test.py --dataroot datasets/gas/composite_6_val --name gas_fake2real_cyclegan_CPRshift_2/fake2real --model test --no_dropout --preprocess none     #####CPRshift composite6 val
+
+        python test.py --dataroot datasets/gas/composite_7_train --name gas_fake2real_cyclegan_CPRshift_2/fake2real --model test --no_dropout --preprocess none     #####CPRshift composite7 train
+        python test.py --dataroot datasets/gas/composite_7_val --name gas_fake2real_cyclegan_CPRshift_2/fake2real --model test --no_dropout --preprocess none     #####CPRshift composite7 val
+
+
     The option '--model test' is used for generating CycleGAN results only for one side.
     This option will automatically set '--dataset_mode single', which only loads the images from one set.
     On the contrary, using '--model cycle_gan' requires loading and generating results in both directions,
@@ -21,6 +40,7 @@ Example (You need to train models first or download pre-trained models from our 
 
     Test a pix2pix model:
         python test.py --dataroot ./datasets/facades --name facades_pix2pix --model pix2pix --direction BtoA
+
 
 See options/base_options.py and options/test_options.py for more test options.
 See training and test tips at: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/docs/tips.md
@@ -43,6 +63,9 @@ if __name__ == '__main__':
     opt.no_flip = True    # no flip; comment this line if results on flipped images are needed.
     opt.display_id = -1   # no visdom display; the test code saves the results to a HTML file.
     dataset = create_dataset(opt)  # create a dataset given opt.dataset_mode and other options
+
+    opt.num_test=len(dataset)###
+
     model = create_model(opt)      # create a model given opt.model and other options
     model.setup(opt)               # regular setup: load and print networks; create schedulers
     # create a website
